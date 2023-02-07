@@ -1,0 +1,20 @@
+:root {
+  --color-primary: red;
+  --color-black: #222;
+  --color-white: white;
+ --img-width: 960px;
+  --font-size-xs: 0.7rem
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* prods con la misma clase, que define carta de producto con algún hover  */
+/* `flex` / `grid` */
+
+/* escritorio: filter izquierda y prods dcha
+movil filter arriba y prods abajo */
+
