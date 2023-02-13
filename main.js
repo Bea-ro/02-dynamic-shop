@@ -1,12 +1,10 @@
-import './style.css'
-
 const products = [
   {
     name: 'ASUS ROG Strix G15 G513RM-HQ012 AMD Ryzen 7 6800H/16GB/1TB SSD/RTX3060/15.6"',
     price: 1299,
     stars: 4.5,
     reviews: 219,
-    seller: 'PcComponentes',
+    seller: 'PcComponents',
     image: 'https://thumb.pccomponentes.com/w-530-530/articles/1031/10317957/1580-asus-rog-strix-g15-g513rm-hq012-amd-ryzen-9-6800h-16gb-1tb-ssd-rtx3060-156.jpg',
     stock: true,
     promo: true
@@ -16,7 +14,7 @@ const products = [
     price: 699,
     stars: 4.5,
     reviews: 56,
-    seller: 'PcComponentes',
+    seller: 'PcComponents',
     image: 'https://thumb.pccomponentes.com/w-530-530/articles/1042/10428549/1392-hp-15s-fq5013ns-intel-core-i5-1235u-8gb-512gb-ssd-156.jpg',
     stock: true,
     promo: false
@@ -103,115 +101,90 @@ const products = [
   },
 ]
 
-// 1. Funciones para pintar los productos:
+// 1. pintar todos los productos:
+
+const productsSection = document.querySelector('.products-section')
+const filtersSection = document.querySelector('.filters-section')
+const productsContainer = document.createElement('ul');
+productsSection.append(productsContainer)
+productsContainer.className = 'products-container'
 
 
-const getProductTemplate = (name, image, price, promo, stars, reviews, seller, stock) => `
+const printAllProducts = (products) => {
 
-<ul>
-  <p>ID: ${order.id}</p>
-  <p>Fecha: ${order.date}</p>
+products.forEach((product) => {
 
-  <li>
-    ${products.forEach((product) => {
-        const productData = products.find((p) => {
-          return p.id === product.productId;
-        });
-
-        return `
-        <li>
-        <img src="${image}" alt="${name}">
-        <h1>${name}</h4>
-        <p>${price}</p>
-        <span>${
-          if (promo=true) {`OFERTA`}
-        }
-        </span>
-        <p>Valoración: ${stars}/5</p>
-        <p>Opiniones: ${reviews}</p>
-        <p>Vendido y enviado por: ${seller}</p>
-        <p>Disponibilidad: ${
-        stock ? {`recíbelo mañana`} : {`recíbelo antes de 7 días`}
-      }
-        </p>
+const productTemplate = `
+        <li class="product-card">
+        <img src="${product.image}" alt="${product.name}" class="product-img">
+        <h3>${product.name}</h3>
+        <div class="price-info">
+        <p class="price">${product.price}€</p>
+        <span class="promo">${product.promo ? (`OFERTA`) : ('')}</span>
+        </div>
+        <p class="stars">Valoración: ${product.stars}/5 (${product.reviews})</p>
+        <p class="stock">Disponibilidad: ${product.stock ? (`recíbelo mañana`) : (`recíbelo antes de 7 días`)}</p>
+        <p class="seller">Vendido y enviado por: ${product.seller}</p>
         </li>
-      `;
-      })
-      }
-  </li>
-</ul>
 `
+productsContainer.innerHTML += productTemplate;
+})
+}
 
-// 2. Pinto productos y su template 
-      
-        // products.forEach((product) => {
-        //   const template = getProductTemplate(name, image, price, promo, stars, reviews, seller, stock);
-        //   productsList.innerHTML += template;
-        // });
+printAllProducts(products)
 
 
-const getProductData = () => {
 
-  const bodyElement = document.querySelector('body')
+// 2. pintar selector e input
 
-  products.forEach ((product) => {
-  bodyElement.innerHTML += getProductTemplate(
-    product.name, product.image, product.price, product.promo, 
-    product.stars, product.reviews, product.seller, product.stock)
-  })
-  }
-  
-  getProductData()
-  
-
-  // let productCard = document.createElement('productCard');
-  // productCard.className = 'product-card'
+const printFilters = () => {
 
 
-const selectedSeller = document.querySelector('input');
-sellectedSeller.addEventListener('select', sellerFilter)
-
-const maxPrice = document.querySelector('input');
-maxPrice.addEventListener('input', priceFilter)
-
-const sellerFilter = products.filter((product) => {
-return product.seller === input.value 
+const sellersList = []
+products.forEach((product) => {
+if(!sellersList.includes(product.seller)) 
+{sellersList.push(product.seller)}
 })
 
-const priceFilter = products.filter((product) => {
-return product.price < input.value
+
+const filtersTemplate = `
+<p class="filters-title">Filtros<p>
+<div class="filter-container">
+<label for="seller">Vendedor</label>
+<select>${sellersList.forEach((seller) => {
+`<option value=${seller}>
+${seller}</option>`
 })
+}
+</select>
+</div>
 
-document.querySelector('#app').innerHTML = `
-  <div>
-  <section class=filter>
-  
-  <label for="seller">Selecciona un vendedor</label>
-  <select>
-  <option value='${seller}'>${seller}</option>
-  </select>
-  
+<div class="filter-container">
+<label for="price">Precio máximo
+<input type="number">
+<button>Buscar</button>
+</label>
+</div>
+`   
+filtersSection.innerHTML = filtersTemplate
+}
 
-  <label for="price">Busca por precio máximo
-  <input type="number">
-  <button>Buscar</button>
-  </label>
+printFilters()
+// 3. pintado filtrado (igual hay que concatenar filter con map)
 
-  <button>Limpiar filtros</button>
-  
-  </section>  
- 
-  <section class=products>
+// const maxPrice = document.querySelector('input');
+// const sellerSelected = document.querySelector('select')
 
-  ${getProductTemplate()}
-  
-  
-  </section>  
- 
-  </div>
-`
+// const priceFilter = products.filter((product) => {
+// return product.price <= input.value
+// })
 
+// const sellerFilter = products.filter((product) => {
+// return product.seller === Selection.value
+// })
 
+// maxPrice.addEventListener('input', priceFilter)
+// option.addEventListener('select', sellerFilter)
 
-  
+//<button>Limpiar filtros</button>  
 
