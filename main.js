@@ -5,7 +5,8 @@ const products = [
     stars: 4.5,
     reviews: 219,
     seller: 'PcComponents',
-    image: 'https://thumb.pccomponentes.com/w-530-530/articles/1031/10317957/1580-asus-rog-strix-g15-g513rm-hq012-amd-ryzen-9-6800h-16gb-1tb-ssd-rtx3060-156.jpg',
+    image:
+      'https://thumb.pccomponentes.com/w-530-530/articles/1031/10317957/1580-asus-rog-strix-g15-g513rm-hq012-amd-ryzen-9-6800h-16gb-1tb-ssd-rtx3060-156.jpg',
     stock: true,
     promo: true
   },
@@ -15,7 +16,8 @@ const products = [
     stars: 4.5,
     reviews: 56,
     seller: 'PcComponents',
-    image: 'https://thumb.pccomponentes.com/w-530-530/articles/1042/10428549/1392-hp-15s-fq5013ns-intel-core-i5-1235u-8gb-512gb-ssd-156.jpg',
+    image:
+      'https://thumb.pccomponentes.com/w-530-530/articles/1042/10428549/1392-hp-15s-fq5013ns-intel-core-i5-1235u-8gb-512gb-ssd-156.jpg',
     stock: true,
     promo: false
   },
@@ -25,7 +27,8 @@ const products = [
     stars: 4.5,
     reviews: 4,
     seller: 'Locurainformatica',
-    image: 'https://thumb.pccomponentes.com/w-530-530/articles/1065/10650375/1374-lenovo-thinkbook-15-g2-itl-intel-core-i5-1135g7-16-gb-512gb-ssd-156.jpg',
+    image:
+      'https://thumb.pccomponentes.com/w-530-530/articles/1065/10650375/1374-lenovo-thinkbook-15-g2-itl-intel-core-i5-1135g7-16-gb-512gb-ssd-156.jpg',
     stock: true,
     promo: true
   },
@@ -35,7 +38,8 @@ const products = [
     stars: 4.5,
     reviews: 8,
     seller: 'OCASIONA',
-    image: 'https://thumb.pccomponentes.com/w-530-530/articles/1058/10587710/1121-gigabyte-u4-ud-50es823so-intel-core-i5-1155g7-8gb-512gb-ssd-14.jpg',
+    image:
+      'https://thumb.pccomponentes.com/w-530-530/articles/1058/10587710/1121-gigabyte-u4-ud-50es823so-intel-core-i5-1155g7-8gb-512gb-ssd-14.jpg',
     stock: true,
     promo: true
   },
@@ -45,7 +49,8 @@ const products = [
     stars: 5,
     reviews: 23,
     seller: 'Procomp Team',
-    image: 'https://thumb.pccomponentes.com/w-530-530/articles/1043/10431334/1444-gigabyte-aorus-17-xe4-73es514sh-intel-core-i7-12700h-16gb-1tb-ssd-rtx-3070ti-173.jpg',
+    image:
+      'https://thumb.pccomponentes.com/w-530-530/articles/1043/10431334/1444-gigabyte-aorus-17-xe4-73es514sh-intel-core-i7-12700h-16gb-1tb-ssd-rtx-3070ti-173.jpg',
     stock: false,
     promo: true
   },
@@ -55,7 +60,8 @@ const products = [
     stars: 4,
     reviews: 26,
     seller: 'OCASIONA',
-    image: 'https://thumb.pccomponentes.com/w-530-530/articles/1027/10273328/1319-asus-vivobook-flip-tp470ea-ec402w-intel-core-i5-1135g7-8gb-512gb-ssd-14-tactil.jpg',
+    image:
+      'https://thumb.pccomponentes.com/w-530-530/articles/1027/10273328/1319-asus-vivobook-flip-tp470ea-ec402w-intel-core-i5-1135g7-8gb-512gb-ssd-14-tactil.jpg',
     stock: true,
     promo: true
   },
@@ -65,7 +71,8 @@ const products = [
     stars: 4.5,
     reviews: 5,
     seller: 'Locurainformatica',
-    image: 'https://thumb.pccomponentes.com/w-530-530/articles/1062/10622694/1735-asus-zenbook-14-oled-ux3402za-km020w-intel-core-i5-1240p-16gb-512gb-ssd-14.jpg',
+    image:
+      'https://thumb.pccomponentes.com/w-530-530/articles/1062/10622694/1735-asus-zenbook-14-oled-ux3402za-km020w-intel-core-i5-1240p-16gb-512gb-ssd-14.jpg',
     stock: true,
     promo: true
   },
@@ -75,7 +82,8 @@ const products = [
     stars: 4,
     reviews: 1,
     seller: 'PcComponents',
-    image: 'https://thumb.pccomponentes.com/w-530-530/articles/1057/10579923/1358-hp-15s-fq5075ns-intel-core-i5-1235u-8gb-512gb-ssd-156.jpg',
+    image:
+      'https://thumb.pccomponentes.com/w-530-530/articles/1057/10579923/1358-hp-15s-fq5075ns-intel-core-i5-1235u-8gb-512gb-ssd-156.jpg',
     stock: true,
     promo: true
   },
@@ -85,7 +93,8 @@ const products = [
     stars: 4,
     reviews: 44,
     seller: 'PRIXTON',
-    image: 'https://thumb.pccomponentes.com/w-530-530/articles/25/257283/169-prixton-flex-pro-intel-apollo-lake-n3350-4gb-64gb-116-tactil.jpg',
+    image:
+      'https://thumb.pccomponentes.com/w-530-530/articles/25/257283/169-prixton-flex-pro-intel-apollo-lake-n3350-4gb-64gb-116-tactil.jpg',
     stock: false,
     promo: true
   },
@@ -95,67 +104,25 @@ const products = [
     stars: 0,
     reviews: 0,
     seller: 'UDI',
-    image: 'https://thumb.pccomponentes.com/w-530-530/articles/1063/10636787/1667-asus-laptop-m515da-amd-ryzen-5-3500u-12gb-512gb-ssd-156-pt-ece2bb12-45d9-46bd-a76b-860ff9789d2e.jpg',
+    image:
+      'https://thumb.pccomponentes.com/w-530-530/articles/1063/10636787/1667-asus-laptop-m515da-amd-ryzen-5-3500u-12gb-512gb-ssd-156-pt-ece2bb12-45d9-46bd-a76b-860ff9789d2e.jpg',
     stock: false,
     promo: false
-  },
-]
+  }
+];
 
-// 1. pintar todos los productos:
-
-const productsSection = document.querySelector('.products-section')
-const filtersSection = document.querySelector('.filters-section')
+const filtersSection = document.querySelector('.filters-section');
+const productsSection = document.querySelector('.products-section');
 const productsContainer = document.createElement('ul');
-productsSection.append(productsContainer)
-productsContainer.className = 'products-container'
-
-
-const printAllProducts = (products) => {
-
-products.forEach((product) => {
-
-const productTemplate = `
-        <li class="product-card">
-        <img src="${product.image}" alt="${product.name}" class="product-img">
-        <h3>${product.name}</h3>
-        <div class="price-info">
-        <p class="price">${product.price}€</p>
-        <span class="promo">${product.promo ? (`OFERTA`) : ('')}</span>
-        </div>
-        <p class="stars">Valoración: ${product.stars}/5 (${product.reviews})</p>
-        <p class="stock">Disponibilidad: ${product.stock ? (`recíbelo mañana`) : (`recíbelo antes de 7 días`)}</p>
-        <p class="seller">Vendido y enviado por: ${product.seller}</p>
-        </li>
-`
-productsContainer.innerHTML += productTemplate;
-})
-}
-
-printAllProducts(products)
-
-
-
-// 2. pintar selector e input
-
-const printFilters = () => {
-
-
-const sellersList = []
-products.forEach((product) => {
-if(!sellersList.includes(product.seller)) 
-{sellersList.push(product.seller)}
-})
-
+productsSection.append(productsContainer);
+productsContainer.className = 'products-container';
 
 const filtersTemplate = `
 <p class="filters-title">Filtros<p>
 <div class="filter-container">
 <label for="seller">Vendedor</label>
-<select>${sellersList.forEach((seller) => {
-`<option value=${seller}>
-${seller}</option>`
-})
-}
+<select>
+<option value="empty"> </option>
 </select>
 </div>
 
@@ -165,26 +132,96 @@ ${seller}</option>`
 <button>Buscar</button>
 </label>
 </div>
-`   
-filtersSection.innerHTML = filtersTemplate
-}
+`;
 
-printFilters()
-// 3. pintado filtrado (igual hay que concatenar filter con map)
+filtersSection.innerHTML = filtersTemplate;
 
-// const maxPrice = document.querySelector('input');
-// const sellerSelected = document.querySelector('select')
+const selectElement = document.querySelector('select');
 
-// const priceFilter = products.filter((product) => {
-// return product.price <= input.value
-// })
+const printFilters = () => {
+  const sellersList = [];
+  products.forEach((product) => {
+    if (!sellersList.includes(product.seller)) {
+      sellersList.push(product.seller);
+    }
+  });
 
-// const sellerFilter = products.filter((product) => {
-// return product.seller === Selection.value
-// })
+  sellersList.sort();
 
-// maxPrice.addEventListener('input', priceFilter)
-// option.addEventListener('select', sellerFilter)
+  sellersList.forEach((item) => {
+    const uniqueSeller = item;
+    const optionElement = document.createElement('option');
+    selectElement.append(optionElement);
+    optionElement.value = uniqueSeller;
+    optionElement.innerText += uniqueSeller;
+  });
+};
 
-//<button>Limpiar filtros</button>  
+printFilters();
 
+const printProducts = (products) => {
+  products.forEach((product) => {
+    const productTemplate = `
+        <li class="product-card">
+        <img src="${product.image}" alt="${product.name}" class="product-img">
+        <h3>${product.name}</h3>
+        <div class="price-info">
+        <p class="price">${product.price}€</p>
+        <span class="promo">${product.promo ? 'OFERTA' : ''}</span>
+        </div>
+        <p class="stars">Valoración: ${product.stars}/5 (${product.reviews})</p>
+        <p class="stock">Disponibilidad: ${
+          product.stock ? 'recíbelo mañana' : 'recíbelo antes de 7 días'
+        }</p>
+        <p class="seller">Vendido y enviado por: ${product.seller}</p>
+        </li>
+`;
+    productsContainer.innerHTML += productTemplate;
+  });
+};
+
+printProducts(products);
+
+const maxPrice = document.querySelector('input');
+
+const handleFilter = () => {
+  const sellerSelected = selectElement.options[selectElement.selectedIndex].value;
+  const productCards = document.querySelectorAll('.product-card');
+
+  const priceFilter = products.filter((product) => product.price <= maxPrice.value);
+  const sellerFilter = products.filter((product) => product.seller === sellerSelected);
+  const allFilter = products.filter((product) => 
+  product.seller === sellerSelected && product.price <= maxPrice.value);
+
+  if (maxPrice.value === '' && sellerSelected !== 'empty') {
+    productCards.forEach((productCard) => productCard.remove());
+    printProducts(sellerFilter);
+  } else if (sellerSelected === 'empty' && maxPrice.value !== '') {
+    productCards.forEach((productCard) => productCard.remove());
+    printProducts(priceFilter);
+  } else if (sellerSelected !== 'empty' && maxPrice.value !== '') {
+    productCards.forEach((productCard) => productCard.remove());
+    printProducts(allFilter);
+  }
+};
+
+// if (sellerFilter = [] || priceFilter = [] || allFilter = []) {
+//   productsContainer.innerHTML = 'No hay artículos con las características seleccionadas'
+// }
+
+const searchButton = document.querySelector('button');
+searchButton.addEventListener('click', handleFilter);
+
+const cleanButton = document.createElement('button');
+filtersSection.append(cleanButton);
+cleanButton.innerText = 'Limpiar filtros';
+
+const handleClean = () => {
+  selectElement.selectedIndex = 0;
+  maxPrice.value = '';
+  const productCards = document.querySelectorAll('.product-card');
+  productCards.forEach((productCard) => productCard.remove());
+  printProducts(products);
+};
+
+cleanButton.addEventListener('click', handleClean);

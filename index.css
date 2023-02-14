@@ -8,6 +8,9 @@
   font-size: 0.875rem;
 }
 
+/* pte media query en movil se coloquen arriba los filtros*/
+/* prods con la misma clase, que define carta de producto con algún hover  */
+
 :root {
   --color-primary: #ff6000;
   --color-grey: #444;
@@ -102,9 +105,7 @@ font-size: 0.75rem;
 .seller {
 font-size: 0.75rem;  
 }
-/* prods con la misma clase, que define carta de producto con algún hover  */
-/* `flex` / `grid` */
 
-/* escritorio: filter izquierda y prods dcha
-movil filter arriba y prods abajo */
+
+
 
