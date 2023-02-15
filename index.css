@@ -8,8 +8,7 @@
   font-size: 0.875rem;
 }
 
-/* pte media query en movil se coloquen arriba los filtros*/
-/* prods con la misma clase, que define carta de producto con algún hover  */
+/*movil arriba filtros*/
 
 :root {
   --color-primary: #ff6000;
@@ -28,6 +27,14 @@
   color: ver(var(--color-grey))
 }
 
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 24px 12px 24px;
+  border-bottom: 1px solid #CCCCCC;
+}
+
 a {
   text-decoration: none;
   cursor: pointer
@@ -43,8 +50,39 @@ margin-bottom: 0.5rem;
 font-size: 0.875rem;
 }
 
-p {
-margin-bottom: 0.5rem;  
+figure {
+  display: flex;  
+}
+
+p, input {
+  margin-bottom: 0.5rem;  
+}
+
+.logo {
+  width: 138px;
+  height: 48px;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.header-input {
+  width: 200px;
+}
+
+.shopping-navbar {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-img {
+  width: 22px;
+  height: 22px;   
 }
 
 #app {
@@ -55,6 +93,7 @@ flex-direction: row;
 .filters-section 
 {
 padding: 24px;
+min-width: 240px;
 }
 
 .filters-title, label {
@@ -71,11 +110,17 @@ padding-bottom: 1rem;
 .products-container {
 display: grid;
 grid-template-columns: 1fr 1fr 1fr;
-grid-gap: 1.5rem;
+grid-gap: 2rem;
+padding-right: 24px;
 }
 
 .product-card {
 padding: 16px
+}
+
+.product-card:hover {
+border: 1px solid var(--color-primary);
+transform: scale(1.10)
 }
 
 .product-img {
@@ -106,6 +151,22 @@ font-size: 0.75rem;
 font-size: 0.75rem;  
 }
 
+.message-container {
+  margin-top: 48px;
+}
 
+@media screen and (max-width: 376px) {
+  #app
+  {
+      display: block;
+  }
+  .nav-text {
+    display: none;
+  }
+  .filters-section {
+    display: flex;
+    width: 100%;
+  }
+}
 
 
