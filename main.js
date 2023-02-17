@@ -131,7 +131,6 @@ const products = [
   },
 ];
 
-const headerElement = document.querySelector('header');
 const filtersSection = document.querySelector('.filters-section');
 const productsSection = document.querySelector('.products-section');
 const productsContainer = document.createElement('ul');
@@ -141,36 +140,11 @@ const messageContainer = document.createElement('div');
 messageContainer.className = 'message-container';
 productsSection.append(messageContainer);
 
-const headerTemplate = `
-<figure class="logo-container">
-<a href="https://www.pccomponentes.com/" target="blank" rel="noopener noreferrer">
-<img src="./src/assets/images/logo-pccomponentes.svg" alt="Logo PcComponentes" class="logo"/>
-</a>
-</figure>
-
-<div class="search-container">
-<input type="text" placeholder="Busca en PcComponentes..." class="header-input"></input>
-<a href="#" target="blank" rel="noopener noreferrer">
-<img src="./src/assets/images/search-icon.png" alt="Search Icon" class="nav-img"/>
-</a>
-</div>
-
-<nav class="shopping-navbar">
-  <a href="https://www.pccomponentes.com/compromisos"><img src="./src/assets/images/commintment-icon.png" alt="comminment-icon" class="nav-img"/></a>
-  <a href="https://www.pccomponentes.com/compromisos" class="nav-text">Compromisos</a>
-  <a href="https://www.pccomponentes.com/login"><img src="./src/assets/images/user-icon.png" alt="User Icon" class="nav-img"/></a>
-  <a href="https://www.pccomponentes.com/login" class="nav-text">Mi cuenta</a>
-  <a href="#"><img src="./src/assets/images/shopping-cart-icon.png" alt="Shopping Cart Icon" class="nav-img"/></a>
-  <a href="#" class="nav-text">Mi carrito</a>
-  </nav>
-`;
-headerElement.innerHTML = headerTemplate;
-
 const filtersTemplate = `
 <div class="filters-title">Filtros<div>
 <div class="filter-container">
 <label for="seller">Vendedor</label>
-<select>
+<select class="seller-select">
 <option value="empty"> </option>
 </select>
 </div>
@@ -178,15 +152,24 @@ const filtersTemplate = `
 <div class="filter-container">
 <label for="price">Precio máximo
 <input type="number" class="price-input">
-<button>Buscar</button>
 </label>
 </div>
-`;
+
+<div class="filter-container">
+<label for="stock">Disponibilidad</label>
+<select class="stock-select">
+<option value="empty"> </option>
+<option value="true">Recíbelo mañana</option>
+<option value="false">Recíbelo antes de 7 días</option>
+</select>
+</div>`;
+
 filtersSection.innerHTML = filtersTemplate;
 
-const selectElement = document.querySelector('select');
+const sellerSelectElement = document.querySelector('.seller-select');
+const stockSelectElement = document.querySelector('.stock-select');
 
-const printFilters = () => {
+const printSellersList = () => {
   const sellersList = [];
   products.forEach((product) => {
     if (!sellersList.includes(product.seller)) {
@@ -199,13 +182,13 @@ const printFilters = () => {
   sellersList.forEach((item) => {
     const uniqueSeller = item;
     const optionElement = document.createElement('option');
-    selectElement.append(optionElement);
+    sellerSelectElement.append(optionElement);
     optionElement.value = uniqueSeller;
     optionElement.innerText += uniqueSeller;
   });
 };
 
-printFilters();
+printSellersList();
 
 const printProducts = (products) => {
   products.forEach((product) => {
@@ -235,37 +218,56 @@ printProducts(products);
 const maxPrice = document.querySelector('.price-input');
 
 const handleFilter = () => {
-  const sellerSelected = selectElement.options[selectElement.selectedIndex].value;
+  const sellerSelected = sellerSelectElement.options[sellerSelectElement.selectedIndex].value;
+  const stockSelected = stockSelectElement.options[stockSelectElement.selectedIndex].value;
   const productCards = document.querySelectorAll('.product-card');
 
   const sellerFilter = products.filter((product) => product.seller === sellerSelected);
   const priceFilter = products.filter((product) => product.price <= maxPrice.value);
-  const allFilter = products.filter(
-    (product) => product.seller === sellerSelected && product.price <= maxPrice.value
-  );
-  const noResults = products.filter(
-    (product) => product.price > maxPrice.value || product.seller != sellerSelected
-  );
+  const stockFilter = products.filter((product) => product.stock.toString() === stockSelected)
+  const sellerPriceFilter = products.filter((product) => product.seller === sellerSelected 
+  && product.price <= maxPrice.value)
+  const sellerStockFilter = products.filter((product) => product.seller === sellerSelected 
+  && product.stock.toString() === stockSelected)
+  const priceStockFilter = products.filter((product) => product.price <= maxPrice.value
+  && product.stock.toString() === stockSelected)
+  const allFilter = products.filter((product) => product.seller === sellerSelected 
+    && product.price <= maxPrice.value
+    && product.stock.toString() === stockSelected);
+  
 
-  if (maxPrice.value === '' && sellerSelected !== 'empty') {
+  if (sellerSelected !== 'empty' && maxPrice.value === '' && stockSelected === 'empty') {
     productCards.forEach((productCard) => productCard.remove());
     printProducts(sellerFilter);
-  } else if (sellerSelected === 'empty' && maxPrice.value !== '') {
+  } else if (sellerSelected === 'empty' && maxPrice.value !== '' && stockSelected === 'empty') {
     productCards.forEach((productCard) => productCard.remove());
     printProducts(priceFilter);
-  } else if (sellerSelected !== 'empty' && maxPrice.value !== '') {
+  } else if (sellerSelected === 'empty' && maxPrice.value === '' && stockSelected !== 'empty') {
+    productCards.forEach((productCard) => productCard.remove());
+    printProducts(stockFilter);
+  } else if (sellerSelected !== 'empty' && maxPrice.value !== '' && stockSelected === 'empty') {
+    productCards.forEach((productCard) => productCard.remove());
+    printProducts(sellerPriceFilter);
+} else if (sellerSelected !== 'empty' && maxPrice.value === '' && stockSelected !== 'empty') {
+  productCards.forEach((productCard) => productCard.remove());
+  printProducts(sellerStockFilter)
+} else if (sellerSelected === 'empty' && maxPrice.value !== '' && stockSelected !== 'empty') {
+  productCards.forEach((productCard) => productCard.remove());
+  printProducts(priceStockFilter)
+} else if (sellerSelected !== 'empty' && maxPrice.value !== '' && stockSelected !== 'empty') {
     productCards.forEach((productCard) => productCard.remove());
     printProducts(allFilter);
   }
-  if (noResults) {
-    console.log('mensaje no results');
+
+  if (!productCards) {
     productsSection.append(messageContainer);
-    messageContainer.innerHTML =
-      'Lo sentimos. No hay artículos con las características seleccionadas.';
+    messageContainer.innerHTML = 'Lo sentimos. No hay artículos con las características seleccionadas.';
   }
 };
 
-const searchButton = document.querySelector('button');
+const searchButton = document.createElement('button');
+filtersSection.append(searchButton);
+searchButton.innerText = 'Buscar';
 searchButton.addEventListener('click', handleFilter);
 
 const cleanButton = document.createElement('button');
@@ -273,7 +275,8 @@ filtersSection.append(cleanButton);
 cleanButton.innerText = 'Limpiar filtros';
 
 const handleClean = () => {
-  selectElement.selectedIndex = 0;
+  sellerSelectElement.selectedIndex = 0;
+  stockSelectElement.selectedIndex = 0;
   maxPrice.value = '';
   const productCards = document.querySelectorAll('.product-card');
   messageContainer?.remove();
