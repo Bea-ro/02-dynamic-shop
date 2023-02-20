@@ -135,6 +135,10 @@ label {
   visibility: hidden;
 }
 
+.clean-button {
+  margin-left: 8px
+}
+
 .products-container {
 display: grid;
 grid-template-columns: 1fr 1fr 1fr;
