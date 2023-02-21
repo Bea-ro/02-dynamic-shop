@@ -86,7 +86,7 @@ button:hover {
   display: none;
 }
 
-.header-input {
+.header-input-desktop {
   min-width: 248px;
   height: 26.67px;
 }
@@ -98,9 +98,10 @@ button:hover {
   align-items: center;
 }
 
-.nav-img {
+.nav-img, .search-img-desktop, .search-img-mobile {
   width: 22px;
-  height: 22px;   
+  height: 22px;
+  cursor: pointer;
 }
 
 #app {
@@ -128,6 +129,10 @@ padding-bottom: 1rem;
 label {
   font-weight: 700;
   color: var(--color-black);
+}
+
+select {
+  cursor: pointer
 }
 
 .price-input::placeholder {
@@ -210,7 +215,7 @@ font-size: 0.75rem;
     gap: 8px;
     width:100%;
   }
-  .header-input {
+  .header-input-mobile {
     width:100%
   }
   #app {

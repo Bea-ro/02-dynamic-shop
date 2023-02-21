@@ -127,8 +127,12 @@ const productsContainer = document.createElement('ul');
 productsSection.append(productsContainer);
 productsContainer.className = 'products-container';
 const noProductsMessage = document.createElement('div');
-noProductsMessage.className = 'message'
+noProductsMessage.className = 'message';
 productsSection.append(noProductsMessage);
+const searchInputDesktop = document.querySelector('.header-input-desktop');
+const searchInputMobile = document.querySelector('.header-input-mobile');
+const searchImgDesktop = document.querySelector('.search-img-desktop');
+const searchImgMobile = document.querySelector('.search-img-mobile');
 
 const filtersTemplate = `
 <div class="filters-title">
@@ -138,7 +142,7 @@ Filtros
 <div class="filter-container">
 <label for="seller">Vendedor</label>
 <select class="seller-select">
-<option value="" class="default-option">Vendedor</option>
+<option value="">Vendedor</option>
 </select>
 </div>
 
@@ -150,7 +154,7 @@ Filtros
 <div class="filter-container">
 <label for="stock">Disponibilidad</label>
 <select class="stock-select">
-<option value="" class="default-option" id="default">Disponibilidad</option>
+<option value="">Disponibilidad</option>
 <option value="true">Entrega mañana</option>
 <option value="false">Entrega en 7 días</option>
 </select>
@@ -179,7 +183,6 @@ const printSellersList = () => {
     sellerSelectElement.append(optionElement);
     optionElement.value = uniqueSeller;
     optionElement.innerText += uniqueSeller;
-    optionElement.className = 'seller-option';
   });
 };
 
@@ -210,6 +213,20 @@ const printProducts = (products) => {
 
 printProducts(products);
 
+const searchByName = () => {
+  const productCards = document.querySelectorAll('.product-card');
+  productCards.forEach((productCard) => productCard.remove());
+  const searchNameDesktop = searchInputDesktop.value.toLowerCase();
+  const searchNameMobile = searchInputMobile.value.toLowerCase();
+  const nameFilter = products.filter(
+    (product) =>
+      product.name.toLowerCase().includes(searchNameDesktop) &&
+      product.name.toLowerCase().includes(searchNameMobile)
+  );
+  searchNameDesktop === '' && searchNameMobile === ''
+    ? printProducts(products)
+    : printProducts(nameFilter);
+};
 
 const maxPrice = document.querySelector('.price-input');
 
@@ -231,7 +248,8 @@ const handleFilter = () => {
     (product) => product.price <= maxPrice.value && product.stock.toString() === stock
   );
   const allFilter = products.filter(
-    (product) => product.seller === seller &&
+    (product) =>
+      product.seller === seller &&
       product.price <= maxPrice.value &&
       product.stock.toString() === stock
   );
@@ -267,8 +285,10 @@ const handleFilter = () => {
     (seller === '' && maxPrice.value !== '' && stock !== '' && priceStockFilter.length === 0) ||
     (seller !== '' && maxPrice.value !== '' && stock !== '' && allFilter.length === 0);
 
-  noProducts? (noProductsMessage.innerText =
-  'Lo sentimos. No hay artículos con las características seleccionadas.') : (noProductsMessage.innerText = '');
+  noProducts
+    ? (noProductsMessage.innerText =
+        'Lo sentimos. No hay artículos con las características seleccionadas.')
+    : (noProductsMessage.innerText = '');
 };
 
 const searchButton = document.createElement('button');
@@ -281,6 +301,8 @@ cleanButton.innerText = 'Limpiar filtros';
 cleanButton.className = 'clean-button';
 
 const handleClean = () => {
+  searchInputDesktop.value = '';
+  searchInputMobile.value = '';
   sellerSelectElement.selectedIndex = 0;
   stockSelectElement.selectedIndex = 0;
   maxPrice.value = '';
@@ -289,5 +311,7 @@ const handleClean = () => {
   printProducts(products);
 };
 
+searchImgDesktop.addEventListener('click', searchByName);
+searchImgMobile.addEventListener('click', searchByName);
 searchButton.addEventListener('click', handleFilter);
 cleanButton.addEventListener('click', handleClean);
