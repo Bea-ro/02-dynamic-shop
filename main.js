@@ -127,33 +127,34 @@ const productsContainer = document.createElement('ul');
 productsSection.append(productsContainer);
 productsContainer.className = 'products-container';
 const noProductsMessage = document.createElement('div');
+noProductsMessage.className = 'message'
 productsSection.append(noProductsMessage);
 
 const filtersTemplate = `
 <div class="filters-title">
 Filtros
 </div>
-
+<div class="filters">
 <div class="filter-container">
 <label for="seller">Vendedor</label>
 <select class="seller-select">
-<option value="" class="seller-opion"> </option>
+<option value="" class="default-option">Vendedor</option>
 </select>
 </div>
 
 <div class="filter-container">
-<label for="price">Precio máximo
-<input type="number" class="price-input">
-</label>
+<label for="price">Precio máximo</label>
+<input type="number" class="price-input" placeholder="Precio máximo">
 </div>
 
 <div class="filter-container">
 <label for="stock">Disponibilidad</label>
 <select class="stock-select">
-<option value="" class="stock-opion"> </option>
-<option value="true" class="stock-opion">Recíbelo mañana</option>
-<option value="false" class="stock-opion">Recíbelo antes de 7 días</option>
+<option value="" class="default-option" id="default">Disponibilidad</option>
+<option value="true">Entrega mañana</option>
+<option value="false">Entrega en 7 días</option>
 </select>
+</div>
 </div>
 `;
 
@@ -161,7 +162,6 @@ filtersSection.innerHTML = filtersTemplate;
 
 const sellerSelectElement = document.querySelector('.seller-select');
 const stockSelectElement = document.querySelector('.stock-select');
-
 
 const printSellersList = () => {
   const sellersList = [];
@@ -177,9 +177,9 @@ const printSellersList = () => {
     const uniqueSeller = item;
     const optionElement = document.createElement('option');
     sellerSelectElement.append(optionElement);
-    optionElement.className = '.seller-option';
     optionElement.value = uniqueSeller;
     optionElement.innerText += uniqueSeller;
+    optionElement.className = 'seller-option';
   });
 };
 
@@ -190,16 +190,17 @@ const printProducts = (products) => {
     const productTemplate = `
         <li class="product-card">
         <a href="${product.link}" target="blank" rel="noopnener noreferrer">
+        <figure class="product-img-container">
         <img src="${product.image}" alt="${product.name}" class="product-img">
-        <p>${product.name}</p>
+        </figure>
+        <p class="product-name">${product.name}</p>
         <div class="price-info">
         <p class="price">${product.price}€</p>
         <span class="promo">${product.promo ? 'OFERTA' : ''}</span>
         </div>
         <p class="stars">Valoración: ${product.stars}/5 (${product.reviews})</p>
-        <p class="stock">Disponibilidad: ${
-          product.stock ? 'recíbelo mañana' : 'recíbelo antes de 7 días'}</p>
-        <p class="seller">Vendido y enviado por: ${product.seller}</p>
+        <p class="stock">${product.stock ? 'Recíbelo mañana' : 'Recíbelo en 7 días'}</p>
+        <p class="seller">Vendido por ${product.seller}</p>
         </a>
         </li>
 `;
@@ -212,23 +213,28 @@ printProducts(products);
 
 const maxPrice = document.querySelector('.price-input');
 
-
 const handleFilter = () => {
   const seller = sellerSelectElement.options[sellerSelectElement.selectedIndex].value;
-  const stock = stockSelectElement.options[stockSelectElement.selectedIndex].value;  
+  const stock = stockSelectElement.options[stockSelectElement.selectedIndex].value;
   const productCards = document.querySelectorAll('.product-card');
 
   const sellerFilter = products.filter((product) => product.seller === seller);
   const priceFilter = products.filter((product) => product.price <= maxPrice.value);
   const stockFilter = products.filter((product) => product.stock.toString() === stock);
-  const sellerPriceFilter = products.filter((product) => product.seller === seller 
-  && product.price <= maxPrice.value);
-  const sellerStockFilter = products.filter((product) => product.seller === seller
-  && product.stock.toString() === stock);
-  const priceStockFilter = products.filter((product) => product.price <= maxPrice.value 
-  && product.stock.toString() === stock);
-  const allFilter = products.filter((product) => product.seller === seller 
-  && product.price <= maxPrice.value && product.stock.toString() === stock);
+  const sellerPriceFilter = products.filter(
+    (product) => product.seller === seller && product.price <= maxPrice.value
+  );
+  const sellerStockFilter = products.filter(
+    (product) => product.seller === seller && product.stock.toString() === stock
+  );
+  const priceStockFilter = products.filter(
+    (product) => product.price <= maxPrice.value && product.stock.toString() === stock
+  );
+  const allFilter = products.filter(
+    (product) => product.seller === seller &&
+      product.price <= maxPrice.value &&
+      product.stock.toString() === stock
+  );
 
   if (seller !== '' && maxPrice.value === '' && stock === '') {
     productCards.forEach((productCard) => productCard.remove());
@@ -251,19 +257,19 @@ const handleFilter = () => {
   } else if (seller !== '' && maxPrice.value !== '' && stock !== '') {
     productCards.forEach((productCard) => productCard.remove());
     printProducts(allFilter);
-  };
+  }
 
-const noProducts = (seller === '' && maxPrice.value !== '' && stock === '' && priceFilter.length === 0) 
-|| (seller === '' && maxPrice.value === '' && stock !== '' && stockFilter.length === 0) 
-|| (seller !== '' && maxPrice.value !== '' && stock === '' && sellerPriceFilter.length === 0) 
-|| (seller !== '' && maxPrice.value === '' && stock !== '' && sellerStockFilter.length === 0) 
-|| (seller === '' && maxPrice.value !== '' && stock !== '' && priceStockFilter.length === 0) 
-|| (seller !== '' && maxPrice.value !== '' && stock !== '' && allFilter.length === 0);
+  const noProducts =
+    (seller === '' && maxPrice.value !== '' && stock === '' && priceFilter.length === 0) ||
+    (seller === '' && maxPrice.value === '' && stock !== '' && stockFilter.length === 0) ||
+    (seller !== '' && maxPrice.value !== '' && stock === '' && sellerPriceFilter.length === 0) ||
+    (seller !== '' && maxPrice.value === '' && stock !== '' && sellerStockFilter.length === 0) ||
+    (seller === '' && maxPrice.value !== '' && stock !== '' && priceStockFilter.length === 0) ||
+    (seller !== '' && maxPrice.value !== '' && stock !== '' && allFilter.length === 0);
 
-noProducts? noProductsMessage.innerText = 
-'Lo sentimos. No hay artículos con las características seleccionadas.' : 
-noProductsMessage.innerText = ''
-}
+  noProducts? (noProductsMessage.innerText =
+  'Lo sentimos. No hay artículos con las características seleccionadas.') : (noProductsMessage.innerText = '');
+};
 
 const searchButton = document.createElement('button');
 filtersSection.append(searchButton);
@@ -272,7 +278,7 @@ searchButton.innerText = 'Buscar';
 const cleanButton = document.createElement('button');
 filtersSection.append(cleanButton);
 cleanButton.innerText = 'Limpiar filtros';
-cleanButton.className = 'clean-button'
+cleanButton.className = 'clean-button';
 
 const handleClean = () => {
   sellerSelectElement.selectedIndex = 0;
@@ -285,4 +291,3 @@ const handleClean = () => {
 
 searchButton.addEventListener('click', handleFilter);
 cleanButton.addEventListener('click', handleClean);
-
