@@ -15,3 +15,4 @@
 ### Proyecto mejorado en base al feedback recibido:
 
 https://github.com/Bea-ro/02-dynamic-shop-review
+https://pc-componentes-filters-review.netlify.app/
